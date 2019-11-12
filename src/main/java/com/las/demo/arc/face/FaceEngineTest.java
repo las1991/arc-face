@@ -65,7 +65,7 @@ public class FaceEngineTest {
                 FaceFeature sourceFaceFeature = source.getFeature();
                 FaceSimilar faceSimilar = new FaceSimilar();
                 int compareCode = faceEngine.compareFaceFeature(targetFaceFeature, sourceFaceFeature, faceSimilar);
-                log.info("source {}, target {}, face compare score {}", source.getName(), target.getName(), faceSimilar.getScore());
+                log.info("face compare score {}, source {}@{}, target {}@{} ", faceSimilar.getScore(), source.getName(), source.getInfo().getFaceId(), target.getName(), target.getInfo().getFaceId());
             });
         });
 
@@ -84,7 +84,7 @@ public class FaceEngineTest {
             //特征提取
             FaceFeature feature = new FaceFeature();
             int extractCode2 = faceEngine.extractFaceFeature(imageInfo.getImageData(), imageInfo.getWidth(), imageInfo.getHeight(), ImageFormat.CP_PAF_BGR24, faceInfo, feature);
-            log.info("{}, faceInfo: {}, feature md5: {}", file.getName(), faceInfo, MD5(feature.getFeatureData()));
+            log.info("{}, faceInfo: {}@{}, feature md5: {}", file.getName(), faceInfo.getFaceId(), faceInfo.getRect(), MD5(feature.getFeatureData()));
             Face face = new Face(file.getName(), faceInfo, feature);
             return face;
         }).collect(Collectors.toList());
