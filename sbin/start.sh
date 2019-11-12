@@ -29,4 +29,4 @@ case $COMMAND in
 
 esac
 
-exec sh -x "${APP_HOME}"/bin/run-class.sh -name arc-face ${EXTRA_ARGS} com.las.demo.arc.face.FaceEngineTest
+exec "${APP_HOME}"/bin/run-class.sh -name arc-face ${EXTRA_ARGS} com.las.demo.arc.face.FaceEngineTest
