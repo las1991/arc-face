@@ -29,7 +29,7 @@ public class FaceEngines {
 
     public static FaceEngine instance() {
         if (Objects.isNull(faceEngine)) {
-            synchronized (faceEngine) {
+            synchronized (FaceEngines.class) {
                 if (Objects.isNull(faceEngine)) {
                     faceEngine = new FaceEngine(SO_LIB_PATH);
                     activeOnline();
@@ -46,7 +46,7 @@ public class FaceEngines {
         }
     }
 
-    public static void init(){
+    public static void init() {
         //引擎配置
         EngineConfiguration engineConfiguration = new EngineConfiguration();
         engineConfiguration.setDetectMode(DetectMode.ASF_DETECT_MODE_IMAGE);
