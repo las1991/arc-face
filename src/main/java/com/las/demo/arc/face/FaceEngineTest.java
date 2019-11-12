@@ -43,19 +43,21 @@ public class FaceEngineTest {
 
         List<Face> facesDB = Lists.newLinkedList();
 
-        log.info("#####################load face to memory ###################");
+        log.info("##################### load face to memory ###################");
 
         Arrays.stream(dirImageDB.listFiles()).forEach(file -> {
             List<Face> faces = file2Faces(file);
             facesDB.addAll(faces);
         });
 
-        log.info("#####################check now !###################");
+        log.info("##################### load check ###################");
         List<Face> checkFaces = Lists.newLinkedList();
         Arrays.stream(dirImageCheck.listFiles()).forEach(file -> {
             List<Face> faces = file2Faces(file);
+            checkFaces.addAll(faces);
         });
 
+        log.info("##################### check now ###################");
         checkFaces.forEach(source -> {
             facesDB.forEach(target -> {
                 //特征比对
