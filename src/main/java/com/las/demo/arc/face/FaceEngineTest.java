@@ -65,6 +65,8 @@ public class FaceEngineTest {
                 });
             });
         });
+
+        FaceEngines.destory();
     }
 
     public static List<Face> file2Faces(File file) {

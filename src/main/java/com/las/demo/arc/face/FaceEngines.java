@@ -33,6 +33,7 @@ public class FaceEngines {
                 if (Objects.isNull(faceEngine)) {
                     faceEngine = new FaceEngine(SO_LIB_PATH);
                     activeOnline();
+                    init();
                 }
             }
         }
@@ -67,7 +68,7 @@ public class FaceEngines {
         int initCode = faceEngine.init(engineConfiguration);
 
         if (initCode != ErrorInfo.MOK.getValue()) {
-            System.out.println("初始化引擎失败");
+            log.error("初始化引擎失败");
         }
     }
 
