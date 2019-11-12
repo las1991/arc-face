@@ -51,18 +51,19 @@ public class FaceEngineTest {
         });
 
         log.info("#####################check now !###################");
+        List<Face> checkFaces = Lists.newLinkedList();
         Arrays.stream(dirImageCheck.listFiles()).forEach(file -> {
             List<Face> faces = file2Faces(file);
+        });
+
+        checkFaces.forEach(source -> {
             facesDB.forEach(target -> {
-                faces.forEach(source -> {
-                    //特征比对
-                    FaceFeature targetFaceFeature = target.getFeature();
-                    FaceFeature sourceFaceFeature = source.getFeature();
-                    FaceSimilar faceSimilar = new FaceSimilar();
-                    int compareCode = faceEngine.compareFaceFeature(targetFaceFeature, sourceFaceFeature, faceSimilar);
-                    log.info("face compare result");
-                    log.info("target {}, source {}, score {}", target.getName(), source.getName(), faceSimilar.getScore());
-                });
+                //特征比对
+                FaceFeature targetFaceFeature = target.getFeature();
+                FaceFeature sourceFaceFeature = source.getFeature();
+                FaceSimilar faceSimilar = new FaceSimilar();
+                int compareCode = faceEngine.compareFaceFeature(targetFaceFeature, sourceFaceFeature, faceSimilar);
+                log.info("source {}, target {}, face compare score {}", source.getName(), target.getName(), faceSimilar.getScore());
             });
         });
 
